@@ -45,7 +45,7 @@
 						style="width:500px; height:300px; resize:none;"></textarea></td>
 					</tr>
 					<tr style="padding : 6px;">
-						<th colspan="2"><input type="submit"style="background-color: purple; color: white;" value="작성완료"></th>
+						<th colspan="2"><input type="submit"style="background-color: purple; color: white; width: 335px;" value="작성완료"></th>
 					</tr>
 				</table>
 				<div align="center" style="padding : 6px;">
