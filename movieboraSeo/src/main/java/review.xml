@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewns">
+	<select id="getTotal" parameterType="string" resultType="integer">
+		select count(*) from review where reviewDel = 'n' and memberNo = (select memberNo from member where memberId = #{memberId} and memberDel='n')
+	</select>
+	<select id="reviewList" parameterType="string" resultType="review">
+		select * from (select rowNum rn, e.* from
+		(select * from review where reviewDel = 'n' and memberNo = 
+		(select memberNo from member where memberId = #{memberId} and member.memberDel = 'n') order by reviewNo desc) e)
+		where rn between 1 and 4
+	</select>
+	<select id="reviewPageList" parameterType="hashmap" resultType="review">
+		select * from (select rowNum rn, e.* from (
+		select r.*, movieName
+		from review r, movie m where r.movieNo = m.movieNo and r.memberNo = #{memberNo}
+		and m.movieDel='n' and r.reviewDel ='n' order by m.movieNo) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="contentReviewlist" parameterType="map" resultType="member">
+		select * from (select rowNum rn, a.* from (select * from member2 order by id)a)
+			where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="reviewNo" resultType="integer">
+	 select count(*) + 1  from review
+	</select>
+	<insert id="reviewInsert" parameterType="review" >
+		insert into review values(#{reviewNo},#{reviewSubject},#{reviewContent},#{memberNo},#{movieNo},sysdate,'n')
+	</insert>
+		<select id="getTotalReview" parameterType="integer" resultType="integer">
+	 select count(*) from review where movieNo= #{movieNo} and reviewDel= 'n'
+	</select>
+	<select id="reviewContents" parameterType="map" resultType="review">
+		select * from (select rowNum rn, a.* from 
+		(select r.*, m.memberNickname, l.reviewlike from review r, Member m , likes l
+		where r.memberNo = m.memberNo and r.reviewNo = l.reviewNo(+) and movieNo = #{movieNo} 
+		and r.reviewDel = 'n' order by r.reviewNo desc) a)
+		where rn between #{startRow} and #{endRow} 
+	</select>
+	<select id="reviewContent" parameterType="integer" resultType="review">
+	 select r.*, m.memberNickname, l.reviewlike from review r, Member m, likes l
+	 where r.memberNo = m.memberNo and r.reviewNo = l.reviewNo(+) and r.reviewNo = #{reviewNo}
+	</select>
+	<update id="reviewUpdate" parameterType="review"  >
+		update review set  reviewSubject=#{reviewSubject},
+	 reviewContent=#{reviewContent}
+	  where reviewNo =#{reviewNo}
+	</update>
+	<update id="reviewDelete" parameterType="review"  >
+		update review set  reviewDel='y'
+	 
+	  where reviewNo =#{reviewNo}
+	</update>
+	<insert id="starsInsert" parameterType="stars"  >
+		insert into stars values(#{score},#{memberNo},#{movieNo})
+	</insert>
+	<select id="confirmReSelect" parameterType="integer" resultType="integer">
+		select count(*) from review where memberNo=#{memberNo} and reviewDel='n'
+	</select>
+	<select id="chkReview" parameterType="review" resultType="integer">
+		select nvl(count(*),0) from review where memberNo=#{memberNo} and movieNo=#{movieNo} and reviewDel = 'n'
+	</select>
+	<select id="chkReviewNo" parameterType="review" resultType="review">
+		select * from review where memberNo=#{memberNo} and movieNo=#{movieNo} and reviewDel = 'n'
+	</select>
+	<select id="countDel" parameterType="map" resultType="integer">
+		select count(*) from (select rowNum rn, a.* from 
+		(select r.*, m.memberNickname, l.reviewlike from review r, Member m , likes l
+		where r.memberNo = m.memberNo and r.reviewNo = l.reviewNo(+) and movieNo = #{movieNo} 
+		and r.reviewDel = 'y' order by r.reviewNo desc) a)
+		where rn between #{startRow} and #{endRow} 
+	</select>
+	<select id="countAll" parameterType="map" resultType="integer">
+		select count(*) from (select rowNum rn, a.* from 
+		(select r.*, m.memberNickname, l.reviewlike from review r, Member m , likes l
+		where r.memberNo = m.memberNo and r.reviewNo = l.reviewNo(+) and movieNo = #{movieNo} 
+		order by r.reviewNo desc) a)
+		where rn between #{startRow} and #{endRow} 
+	</select>
+	<select id="checkDel" parameterType="map" resultType="integer">
+		select count(*) from review where review.memberNo = #{memberNo} and review.movieNo = #{movieNo} and review.reviewDel = 'y'
+	</select>
+	<select id="checkAll" parameterType="map" resultType="integer">
+		select count(*) from review where review.memberNo = #{memberNo} and review.movieNo = #{movieNo}
+	</select>
+</mapper>

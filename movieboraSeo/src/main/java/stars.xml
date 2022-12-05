@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="starsns">
+	<select id="getTotal" parameterType="string" resultType="integer">
+		select count(*) from stars where memberNo = (select memberNo from member where memberId = #{memberId} and memberDel='n')
+	</select>
+	<select id="starsList" parameterType="string" resultType="stars">
+		select * from (select rowNum rn, e.* from
+		(select * from stars where memberNo = 
+		(select memberNo from member where memberId = #{memberId} and member.memberDel = 'n') order by memberNo) e)
+		where rn between 1 and 4
+	</select>
+	<select id="starsPageList" parameterType="hashmap" resultType="stars">
+		select * from (select rowNum rn, e.* from (
+		select s.*, movieName, movieDirector, movieGenre
+		from stars s, movie m where s.movieNo = m.movieNo and s.memberNo = #{memberNo}
+		and m.movieDel='n' order by m.movieNo desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getScore" parameterType="integer" resultType="integer">
+		select nvl(sum(score),0) from stars where movieNo = #{movieNo}
+	</select>
+	<select id="getCount" parameterType="integer" resultType="integer">
+		select count(*) from stars where movieNo = #{movieNo}
+	</select>
+	<select id="average" parameterType="integer" resultType="integer">
+		select nvl(round(avg(score), 1), 0) from stars where movieNo = #{movieNo}
+	</select>
+	<select id="scoreChk" parameterType="stars" resultType="integer">
+		select nvl(count(*),0) from stars where movieNo = #{movieNo} and memberNo= #{memberNo}
+	</select>
+	<insert id="insertScore" parameterType="stars" >
+		insert into stars values (#{score},#{memberNo},#{movieNo}) 
+	</insert>
+	<update id="updateScore" parameterType="stars" >
+		update stars set score = #{score} where movieNo = #{movieNo} and memberNo= #{memberNo}
+	</update>
+	
+</mapper>

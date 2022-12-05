@@ -1,0 +1,16 @@
+/MainPage/
+/MyPage/
+/configuration.xml
+/content/
+/controller/
+/dao/
+/db.properties
+/dbconnect.properties
+/likes.xml
+/member.xml
+/model/
+/movie.xml
+/review.xml
+/service/
+/service1/
+/stars.xml

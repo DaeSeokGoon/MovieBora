@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+input {
+	margin-bottom: 17px;
+	font-family: inherit;
+}
+
+select {
+	width: 259px;
+	height: 40px;
+	padding: 1px 1px;
+	margin: 0;
+	border: 0;
+	color: #aaaaaa;
+	font-family: inherit;
+	font-size: 15px;
+	font-weight: 500;
+}
+
+select:focus {
+	color: 0 0 1px 3px purple;
+}
+
+#chkIdDIV {
+	display: none; 
+}
+
+.check {
+	font-size: 0;
+	position:relative;
+}
+
+.inputBox-left {
+    display: inline-block;
+	width: 100%;
+}
+
+.chk-msg {
+	position: absolute;
+	bottom: -2px;
+	color: var(--point-color);
+	font-size: 13px;
+}
+
+.chk-btn {
+	display: inline-block;
+	position: absolute;
+    right: 14px;
+	width: 90px;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	font-weight: 600;
+	text-align: right;
+	cursor: pointer;
+}
+
+.radio-left {
+	margin-right: 30px;
+}
+
+.select-gender {
+	margin: 20px 0 20px 0;
+}
+

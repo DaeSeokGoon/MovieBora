@@ -1,0 +1,138 @@
+#star a {
+	text-decoration: none;
+	color: gray;
+	font-size: 35px;
+	float: left;
+}
+p #star{
+		position: relative;
+	width: 70%;
+	height: 630px;
+}
+#star a.on {
+	color: red;
+}
+
+img 
+{
+	width: 346px;
+	padding: 20px;
+}
+
+h1 {
+	padding: 20px;
+}
+
+li {
+	font-size: 13pt;
+	padding: 5px;
+}
+
+.content {
+	position: relative;
+	width: 70%;
+	height: 1000px;
+}
+
+.pic
+{
+	width: 346px;
+    padding: 25px;
+    margin-top : 31px;
+    padding-left : 123px;
+}
+
+.info
+{
+	position : absolute;
+	width : 678px;
+	height : 280px;
+	top : 250px;
+	left : 484px;
+	font-size : 18px;
+	font-weight : 400;
+}
+
+.info2
+{
+	position : absolute;
+	width : 288px;
+	height : 91px;
+	top : 505px;
+	left : 484px;
+	font-size : 18px;
+	font-weight : 400;
+}
+
+.stst
+{
+	position : absolute;
+	top : 234px;
+	left : 123px;
+}
+
+.imge {
+	top: 63px;
+	left: 0;
+}
+
+.name {
+    top: 0;
+    left: 0;
+    padding-left: 364px;
+    padding-top: 141px;
+    font-size: 40pt;
+    font-weight: bold;
+}
+
+.sta {
+	top: 0;
+    left: 0;
+    padding-left: 370px;
+    padding-top: 362px;
+    font-size: 50pt;
+    font-weight: bold;
+}
+
+.btn2
+{
+	background-color: purple;
+	color: white;
+}
+
+.genre {
+   top: 0;
+    left: 0;
+    padding-left: 536px;
+    padding-top: 211px;
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.score {
+top: 0;
+    left: 0;
+    padding-left: 370px;
+    padding-top: 561px;
+    font-size: 22pt;
+    font-weight: bold;
+}
+
+.sto {
+	top: 0;
+    left: 0;
+    padding-left: 370px;
+    padding-top: 268px;
+    width: 1300px;
+    height: 53px;
+    font-size: 16pt;
+}
+
+.rel {
+    top: 0;
+    left: 0;
+    padding-left: 370px;
+    padding-top: 211px;
+    font-size: 20pt;
+    font-weight: bold;
+}

@@ -1,0 +1,23 @@
+package service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.MemberDao;
+import model.Member;
+import service1.CommandProcess;
+
+public class ConfirmId implements CommandProcess {
+
+		public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		String memberId = request.getParameter("memberId");
+		String msg="";
+		MemberDao md = MemberDao.getInstance();
+		Member member = md.selectId(memberId);
+		if(member==null) msg="사용가능한 ID 입니다";
+		else msg = "이미 사용중인 ID 입니다.";
+		request.setAttribute("msg", msg);
+		return "confirmId";
+	}
+
+}
