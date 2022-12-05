@@ -41,7 +41,8 @@
 					</tr>
 					<tr style="padding : 6px;">
 						<th>내용</th>
-						<td><textarea rows="5" cols="40" name="reviewContent" required="required"></textarea></td>
+						<td><textarea rows="5" cols="40" name="reviewContent" required="required"
+						style="width:500px; height:300px; resize:none;"></textarea></td>
 					</tr>
 					<tr style="padding : 6px;">
 						<th colspan="2"><input type="submit"style="background-color: purple; color: white;" value="작성완료"></th>
